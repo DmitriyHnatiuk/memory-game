@@ -1,18 +1,5 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  transition: all .5s;
-  text-decoration: none;
-  list-style: none;
-  color: inherit;
-}
-.game__container {
-  width: 100%;
-  min-height: 100vh;
-  background: linear-gradient( rgb(234, 234, 238), rgba(181, 181, 228, 0.73));
-}
-
-.is-hidden {
-  display: none;
-}
+@import './css/variables.css';
+@import './css/reset.css';
+@import './css/utilities.css';
+@import './css/layout.css';
+@import './css/components.css';

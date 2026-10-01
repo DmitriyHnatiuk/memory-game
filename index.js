@@ -1,7 +1,18 @@
+import { createMain } from "./js/components.js";
+import { createModal, openModal } from './js/modal.js';
+
+import { resetGame } from './js/game.js';
+
 document.addEventListener("DOMContentLoaded", () => {
-  const container = document.createElement('div');
-  container.classList = 'game__container';
+  const main = createMain();
+  const modal = createModal();
 
-  document.body.append(container);
+  document.body.append(main, modal);
 
+
+  const score_btn = document.getElementById('score');
+  const reset_btn = document.getElementById('reset');
+
+  score_btn.addEventListener('click', openModal);
+  reset_btn.addEventListener('click', resetGame);
 })

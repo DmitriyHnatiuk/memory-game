@@ -1,0 +1,120 @@
+.header {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  width: 25vw;
+  max-width: 30%;
+  padding-top: 3rem;
+}
+
+.title {
+  font-size: 2.4rem;
+  color: var(--text-accent);
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+
+
+  width: min(80vw, 31rem);
+  height: min(80vw, 31rem);
+
+  background-color: transparent;
+  border: 1px solid var(--border-main);
+  border-radius: 2rem;
+  overflow: hidden;
+  gap: 1px;
+  box-shadow: .3rem .4rem 1rem var(--border-focus);
+}
+
+.cell {
+  background-color: var(--border-light);
+  transition: background-color 0.2s ease;
+}
+
+.cell:hover {
+  background-color: var(--border-focus);
+  cursor: pointer;
+}
+
+
+.header__button__container,
+.header__count__container {
+  display: flex;
+  width: 100%;
+  font-size: 1.4rem;
+}
+
+.header__button__container {
+  justify-content: space-around;
+  gap: 3rem;
+
+  .count {
+    margin-right: 1rem;
+  }
+}
+
+.header__count__container {
+  justify-content: space-between;
+  padding: 0 1rem;
+  letter-spacing: .3rem;
+}
+
+.btn {
+  border: 1px solid var(--border-focus);
+  background: var(--btn-bg);
+  padding: .3rem 1rem;
+  border-radius: 4rem;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+
+  &:hover {
+    transform: translateY(-10%);
+    background-color: var(--btn-bg-hover);
+    box-shadow: var(--modal-shadow);
+  }
+
+  &:active {
+    background-color: var(--btn-bg-active);
+    transform: scale(.9);
+  }
+}
+
+
+.modal__background {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  background-color: var(--modal-shadow);
+}
+
+.modal {
+  position: fixed;
+  z-index: 1001;
+  top: 50%;
+  left: 50%;
+  background-color: var(--bg-modal);
+  width: 50%;
+  min-height: 50%;
+  max-height: 100%;
+  transform: translate(-50%, -50%);
+  border-radius: 2rem;
+  overflow: hidden;
+  box-shadow: .1rem .2rem .8rem var(--text-accent);
+  padding: 1.6rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.btn-close {
+  font-size: 1.4rem;
+  width: 50%
+}

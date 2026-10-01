@@ -1,0 +1,29 @@
+.u-text-xxl {
+  font-size: 4.5rem;
+  font-weight: 800;
+}
+
+.u-text-xl {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.u-text-l {
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.u-text-m {
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+.u-text-s {
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+.is-hidden {
+  display: none;
+}

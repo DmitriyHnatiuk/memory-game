@@ -1,0 +1,31 @@
+:root {
+  --color-light: #eaeaea;
+  --color-purple-tint: #b5b5e4;
+  --color-purple-alpha: #b5b5e4ba;
+
+  --bg-body: linear-gradient(var(--color-light), var(--color-purple-alpha));
+  --bg-main: linear-gradient(var(--color-purple-alpha), var(--color-light));
+
+  --text-main: #2c3539;
+  --text-muted: #697783;
+  --text-accent: #475569;
+  --text-light: #ffffff;
+
+  --border-light: #ffffff;
+  --border-main: #e2e8f0;
+  --border-focus: #cbd5e1;
+
+  --bg-modal: #fffffffc;
+  --modal-shadow: #0f172a0c;
+
+  --btn-bg: #ffffff;
+  --btn-bg-hover: #f8fafc;
+  --btn-bg-active: #f1f5f9;
+
+
+  --btn-text: var(--text-light);
+
+  --btn-secondary-bg: #ffffff99;
+  --btn-secondary-hover: #ffffffcc;
+  --btn-secondary-text: var(--text-main);
+}
