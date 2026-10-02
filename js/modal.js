@@ -64,3 +64,23 @@ export function openModal() {
   modal_bg.addEventListener('click', closeModal);
   close_modal.addEventListener('click', closeModal);
 };
+
+function createScoreList(data) {
+  const score_list = document.createElement('ul');
+  score_list.className = 'score__list';
+
+  const items = data.map(item => ({...document.createElement('li'),className :'score--item',textContent:item}));
+
+  score_list.append(items);
+  return score_list;
+}
+
+
+export function renderScoreModal() {
+  const modal_container = document.getElementById('modal-container');
+  const storage_list = window.localStorage.getItem("score_list");
+
+  const list = createScoreList(storage_list);
+
+
+}

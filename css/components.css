@@ -3,8 +3,8 @@
   justify-content: flex-start;
   flex-direction: column;
   align-items: center;
-  width: 25vw;
-  max-width: 30%;
+  width: 100%;
+  max-width: 20%;
   padding-top: 3rem;
 }
 
@@ -26,18 +26,53 @@
   border: 1px solid var(--border-main);
   border-radius: 2rem;
   overflow: hidden;
-  gap: 1px;
   box-shadow: .3rem .4rem 1rem var(--border-focus);
 }
 
 .cell {
   background-color: var(--border-light);
   transition: background-color 0.2s ease;
+  font-size: 4rem;
+  text-align: center;
+  margin: 4px;
+  border-radius: 1rem;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease;
+  cursor: pointer;
+  
+  &.flipped {
+  transform: rotateY(180deg);
+}
 }
 
-.cell:hover {
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: .5rem;
+  box-shadow: 0 .4rem .5rem var(----modal-shadow);
+}
+
+.card-back {
+  background-color: var(--border-main);
+  color: white;
+  font-size: 24px;
+  transition: transform 1.3s;
+}
+
+.card-front {
+  background-color: #feffff;
+  transform: rotateY(180deg); 
+}
+
+.card-back:hover {
   background-color: var(--border-focus);
-  cursor: pointer;
+  transform: scale(1.1);
 }
 
 
@@ -55,6 +90,11 @@
   .count {
     margin-right: 1rem;
   }
+
+  .steps {
+    position: relative;
+    top: 1px;
+  }
 }
 
 .header__count__container {
@@ -66,6 +106,7 @@
 .btn {
   border: 1px solid var(--border-focus);
   background: var(--btn-bg);
+  min-width: 4.5rem;
   padding: .3rem 1rem;
   border-radius: 4rem;
   transition: background-color 0.2s ease, transform 0.1s ease;
@@ -98,13 +139,14 @@
   z-index: 1001;
   top: 50%;
   left: 50%;
-  background-color: var(--bg-modal);
   width: 50%;
+  max-width: 45rem;
   min-height: 50%;
   max-height: 100%;
   transform: translate(-50%, -50%);
   border-radius: 2rem;
   overflow: hidden;
+  background-color: var(--bg-modal);
   box-shadow: .1rem .2rem .8rem var(--text-accent);
   padding: 1.6rem;
 
@@ -112,6 +154,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
+  gap: 1.5rem;
+}
+
+.modal__container  { 
+  width: 90%;
+  overflow: hidden;
+  background: var(--bg-body);
+  flex: 1;
 }
 
 .btn-close {

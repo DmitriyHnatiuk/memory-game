@@ -1,10 +1,10 @@
 import { createMain } from "./js/components.js";
 import { createModal, openModal } from './js/modal.js';
 
-import { resetGame } from './js/game.js';
+import { resetGame, store } from './js/game.js';
 
 document.addEventListener("DOMContentLoaded", () => {
-  const main = createMain();
+  const main = createMain(store);
   const modal = createModal();
 
   document.body.append(main, modal);

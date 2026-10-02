@@ -58,19 +58,46 @@ function createHeader() {
 }
 
 function createBoard() {
-  const board = document.createElement('div');
+  const board = document.createElement('ul');
   board.className = 'board';
 
   return board;
 }
 
-export function createMain() {
+function createCard(card){
+    const li = document.createElement('li');
+    li.className = 'cell';
+    li.dataset.id = card.id;
+    li.dataset.uid = card.uniqueId;
+
+    const frontElement = document.createElement('div');
+    frontElement.classList.add('card-front');
+
+    const emoji = document.createElement('span');
+    emoji.className = 'card-emoji';
+    emoji.textContent = card.emoji;
+
+    const backElement = document.createElement('div');
+    backElement.classList.add('card-back'); 
+
+    frontElement.appendChild(emoji);
+
+    li.append(frontElement, backElement);
+  
+    return li;
+}
+
+
+export function createMain(store) {
   const main = document.createElement('main');
   main.classList = 'main';
 
   const header = createHeader();
   const board = createBoard();
 
+  const cards_list = store.cards.map(createCard);
+
+  board.append(...cards_list);
   main.append(header, board);
 
   return main;
