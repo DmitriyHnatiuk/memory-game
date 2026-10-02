@@ -4,8 +4,8 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 20%;
   padding-top: 3rem;
+  white-space: nowrap;
 }
 
 .title {
@@ -40,13 +40,14 @@
   transform-style: preserve-3d;
   transition: transform 0.4s ease;
   cursor: pointer;
-  
+
   &.flipped {
-  transform: rotateY(180deg);
-}
+    transform: rotateY(180deg);
+  }
 }
 
-.card-front, .card-back {
+.card-front,
+.card-back {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -67,7 +68,7 @@
 
 .card-front {
   background-color: #feffff;
-  transform: rotateY(180deg); 
+  transform: rotateY(180deg);
 }
 
 .card-back:hover {
@@ -79,8 +80,24 @@
 .header__button__container,
 .header__count__container {
   display: flex;
-  width: 100%;
+  min-width: 30rem;
   font-size: 1.4rem;
+  align-items: center;
+}
+
+.header__count__container {
+  margin-top: 1rem;
+  min-width: 34rem;
+  line-height: 0;
+
+  .steps {
+    position: relative;
+    top: 1px;
+  }
+
+  @media(max-width: 19rem) {
+    min-width: 100%;
+  }
 }
 
 .header__button__container {
@@ -91,9 +108,8 @@
     margin-right: 1rem;
   }
 
-  .steps {
-    position: relative;
-    top: 1px;
+  @media(max-width: 19rem) {
+    min-width: 100%;
   }
 }
 
@@ -157,7 +173,7 @@
   gap: 1.5rem;
 }
 
-.modal__container  { 
+.modal__container {
   width: 90%;
   overflow: hidden;
   background: var(--bg-body);
