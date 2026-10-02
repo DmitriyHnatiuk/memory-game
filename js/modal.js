@@ -20,11 +20,11 @@ export function createModal() {
   btn_close.textContent = 'Close';
 
   const modal_content = document.createElement('div');
-  modal_content.className = 'modal_content';
-  modal_content.id = 'modal_content';
+  modal_content.className = 'modal__content';
+  modal_content.id = 'modal-content';
 
 
-  modal.append(btn_close, modal_content);
+  modal.append(modal_content, btn_close);
 
   modal_container.append(modal_bg, modal)
 
