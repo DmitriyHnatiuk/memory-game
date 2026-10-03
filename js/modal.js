@@ -13,18 +13,30 @@ export function createModal() {
   modal_bg.className = 'modal__background'
   modal_bg.id = "modal-bg"
 
-  const btn_close = document.createElement('button');
-  btn_close.className = 'btn btn-close';
-  btn_close.type = 'button';
-  btn_close.id = 'close-modal';
-  btn_close.textContent = 'Close';
+  const modal_buttons = document.createElement('div');
+  modal_buttons.className = 'modal__buttons';
+  modal_buttons.id = 'modal_buttons';
+
+  const reset_btn = document.createElement('button');
+  reset_btn.className = 'btn reset--btn is-hidden';
+  reset_btn.type = 'button';
+  reset_btn.id = 'new_game';
+  reset_btn.textContent = 'New Game';
+
+  const close_btn = document.createElement('button');
+  close_btn.className = 'btn btn--close';
+  close_btn.type = 'button';
+  close_btn.id = 'close-modal';
+  close_btn.textContent = 'Close';
+
+  modal_buttons.append(reset_btn, close_btn)
 
   const modal_content = document.createElement('div');
   modal_content.className = 'modal__content';
   modal_content.id = 'modal-content';
 
 
-  modal.append(modal_content, btn_close);
+  modal.append(modal_content, modal_buttons);
 
   modal_container.append(modal_bg, modal)
 
@@ -52,6 +64,7 @@ function closeModal() {
 export function openModal() {
   const modal_container = document.getElementById('modal-container');
   const close_modal = document.getElementById('close-modal');
+  const new_game_btn = document.getElementById('new_game');
   const modal_bg = document.getElementById('modal-bg');
 
   modal_container ?
@@ -63,13 +76,28 @@ export function openModal() {
 
   modal_bg.addEventListener('click', closeModal);
   close_modal.addEventListener('click', closeModal);
+
+  new_game_btn.addEventListener('click', () => {
+    new_game_btn.classList.add('is-hidden');
+    closeModal()
+  })
+};
+
+const parseDate = (dateStr) => {
+  const [day, month, year] = dateStr.split('.');
+  return new Date(year, month - 1, day);
 };
 
 function createScoreList(data) {
   const score_list = document.createElement('ul');
   score_list.className = 'u-text-m score__list';
 
-  const items = data.map(item => {
+  const sorted_list = data.sort((a, b) => {
+    return (a.score !== b.score) ? a.score - b.score :
+      parseDate(a.time) - parseDate(b.time);
+  }).slice(0, 10);
+
+  const items = sorted_list.map(item => {
     if (!item) return '';
 
     const li = document.createElement('li');
@@ -100,11 +128,22 @@ export function renderScoreModal() {
   const storage_list = window.localStorage.getItem("score_list");
   const score_list = JSON.parse(storage_list);
 
-  if (!score_list) return;
+  if (!score_list) {
+    const text = document.createElement('p');
+    text.className = 'u-text-m';
+    text.textContent = 'No winners!';
 
+    modal_container.append(text);
+
+    return;
+  }
+
+  const score_list_title = document.createElement('h3');
+  score_list_title.className = 'u-text-l score__list-title';
+  score_list_title.textContent = 'Top 10'
   const list = createScoreList(score_list);
 
-  modal_container.append(list);
+  modal_container.append(score_list_title, list);
 }
 
 
@@ -134,6 +173,9 @@ function renderWinModal() {
 }
 
 export function openWinModal(score) {
+  const new_game_btn = document.getElementById('new_game');
+  new_game_btn.classList.remove('is-hidden');
+
   renderWinModal(score);
   openModal();
 }

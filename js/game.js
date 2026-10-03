@@ -22,6 +22,7 @@ export const store = {
   steps: 0,
   score: 0,
   timer: 1000,
+  timeoutId: null,
   cards: shuffle(gameGrid),
 
   isBoardLocked: false,
@@ -66,11 +67,10 @@ function getWin() {
   if (store.score === store.max_score) {
     const winEvent = new CustomEvent('gameWin', { detail: { steps: store.steps, score: store.score } });
     document.dispatchEvent(winEvent);
-    const score_list = window.localStorage.getItem('score_list');
-    const time = getTime();
+    const score_list = JSON.parse(window.localStorage.getItem('score_list')) || [];
 
-    const newStorage = [...(score_list ? JSON.parse(score_list) : []),
-    { score: store.steps, time }].sort(e => e.score);
+    const time = getTime();
+    const newStorage = [...score_list, { score: store.steps, time }];
 
     window.localStorage.setItem('score_list', JSON.stringify(newStorage));
   }
@@ -80,7 +80,7 @@ function getLose(card) {
   const firstCard = document.querySelector(`[data-uid=${store.firstCard.uid}]`);
   store.isBoardLocked = true;
 
-  setTimeout(() => {
+  store.timeoutId = setTimeout(() => {
     firstCard.classList.remove('flipped');
     card.classList.remove('flipped');
 
@@ -153,6 +153,11 @@ export function resetGame() {
   const board = document.getElementById('board');
   const score = document.getElementById('score-count');
   const steps = document.getElementById('steps');
+
+  if (this.timeoutId) {
+    clearTimeout(this.timeoutId);
+    this.timeoutId = null;
+  }
 
   score.textContent = 0;
   steps.textContent = 0;
