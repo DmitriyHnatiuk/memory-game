@@ -48,7 +48,7 @@ function createHeader() {
   count.id = 'score-count';
   count.textContent = '0';
 
-  score_title.prepend({ count });
+  score_title.prepend(count);
 
   count_container.append(steps_title, score_title);
 
