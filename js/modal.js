@@ -67,20 +67,73 @@ export function openModal() {
 
 function createScoreList(data) {
   const score_list = document.createElement('ul');
-  score_list.className = 'score__list';
+  score_list.className = 'u-text-m score__list';
 
-  const items = data.map(item => ({...document.createElement('li'),className :'score--item',textContent:item}));
+  const items = data.map(item => {
+    if (!item) return '';
 
-  score_list.append(items);
+    const li = document.createElement('li');
+    li.className = 'score--item';
+    li.textContent = item.score
+
+    const span = document.createElement('span');
+    span.className = 'score--time';
+    span.textContent = item.time;
+
+    li.appendChild(span);
+
+    return li
+  });
+
+  score_list.append(...items);
   return score_list;
+}
+
+export function openScoreModal() {
+  renderScoreModal();
+  openModal();
 }
 
 
 export function renderScoreModal() {
-  const modal_container = document.getElementById('modal-container');
+  const modal_container = document.getElementById('modal-content');
   const storage_list = window.localStorage.getItem("score_list");
+  const score_list = JSON.parse(storage_list);
 
-  const list = createScoreList(storage_list);
+  if (!score_list) return;
+
+  const list = createScoreList(score_list);
+
+  modal_container.append(list);
+}
 
 
+function renderWinModal() {
+  const modal_container = document.getElementById('modal-content');
+  const count = document.getElementById('steps');
+
+  const container = document.createElement('div');
+  container.className = 'container__win';
+
+  const title = document.createElement('h2');
+  title.className = 'title__win';
+  title.textContent = 'Win!!!..'
+
+  const score = document.createElement('p');
+  score.className = 'score__win';
+  score.textContent = 'Score :'
+
+  const span = document.createElement('span');
+  span.className = 'span__win';
+  span.textContent = count.textContent;
+
+  score.appendChild(span);
+
+  container.append(title, score);
+  modal_container.append(container);
+}
+
+export function openWinModal(score) {
+  renderWinModal(score);
+  openModal();
 }
