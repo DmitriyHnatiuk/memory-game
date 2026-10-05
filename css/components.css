@@ -1,0 +1,245 @@
+.header {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-top: 3rem;
+  white-space: nowrap;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 2.4rem;
+  color: var(--text-accent);
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+
+  padding: .2rem;
+  width: min(80vw, 31rem);
+  height: min(80vw, 31rem);
+
+  background-color: transparent;
+  border: 1px solid var(--border-main);
+  border-radius: 2rem;
+  overflow: hidden;
+  box-shadow: .3rem .4rem 1rem var(--border-focus);
+}
+
+.cell {
+  background-color: var(--border-light);
+  transition: background-color 0.2s ease;
+  font-size: 4rem;
+  text-align: center;
+  margin: 4px;
+  border-radius: 1rem;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease;
+  cursor: pointer;
+
+  &.flipped {
+    transform: rotateY(180deg);
+  }
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: .5rem;
+  box-shadow: 0 .4rem .5rem var(----modal-shadow);
+}
+
+.card-back {
+  background-color: var(--border-main);
+  color: white;
+  font-size: 24px;
+  transition: transform 1.3s;
+}
+
+.card-front {
+  background-color: #feffff;
+  transform: rotateY(180deg);
+}
+
+.card-back:hover {
+  background-color: var(--border-focus);
+  transform: scale(1.1);
+}
+
+
+.header__button__container,
+.header__count__container {
+  display: flex;
+  min-width: 30rem;
+  font-size: 1.4rem;
+  align-items: center;
+}
+
+.header__count__container {
+  margin-top: 1rem;
+  min-width: 34rem;
+  line-height: 0;
+
+  .steps {
+    position: relative;
+    top: 1px;
+  }
+
+  @media(max-width: 19rem) {
+    min-width: 100%;
+  }
+}
+
+.header__button__container {
+  justify-content: space-around;
+  gap: 3rem;
+
+  .count {
+    margin-right: 1rem;
+  }
+
+  @media(max-width: 19rem) {
+    min-width: 100%;
+  }
+}
+
+.header__count__container {
+  justify-content: space-between;
+  padding: 0 1rem;
+  letter-spacing: .3rem;
+}
+
+.btn {
+  border: 1px solid var(--border-focus);
+  background: var(--btn-bg);
+  min-width: 4.5rem;
+  padding: .3rem 1rem;
+  border-radius: 4rem;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+
+  &:hover {
+    transform: translateY(-10%);
+    background-color: var(--btn-bg-hover);
+    box-shadow: var(--modal-shadow);
+  }
+
+  &:active {
+    background-color: var(--btn-bg-active);
+    transform: scale(.9);
+  }
+}
+
+
+.modal__background {
+  font-size: 0;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  background-color: var(--modal-shadow);
+}
+
+.modal {
+  position: fixed;
+  z-index: 1001;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  max-width: 45rem;
+  min-height: 50%;
+  max-height: 100%;
+  transform: translate(-50%, -50%);
+  border-radius: 2rem;
+  overflow: hidden;
+  background-color: var(--bg-modal);
+  box-shadow: .1rem .2rem .8rem var(--text-accent);
+  padding: 1.6rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.5rem;
+}
+
+.modal__buttons {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 2rem;
+
+  @media (max-width: 28em) {
+    flex-direction: column;
+    gap: 1rem;
+
+    & button {
+      width: 100%;
+    }
+  }
+}
+
+.btn--close,
+.reset--btn {
+  font-size: 1.4rem;
+  width: 50%
+}
+
+.modal__container {
+  width: 90%;
+  overflow: hidden;
+  background: var(--bg-body);
+  flex: 1;
+}
+
+.modal__content {
+  margin-bottom: auto;
+}
+
+.container__win {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+
+}
+
+.title__win {
+  font-size: 2.4rem;
+  color: var(--text-accent);
+  margin-bottom: 2rem;
+}
+
+.score__win {
+  font-size: 1.8rem;
+
+  span {
+    margin-left: 2rem;
+  }
+}
+
+.score--item {
+  list-style: auto;
+
+  &::marker {
+    color: var(--text-muted);
+  }
+}
+
+.score--time {
+  margin-left: 1rem;
+  color: var(--text-accent);
+}
